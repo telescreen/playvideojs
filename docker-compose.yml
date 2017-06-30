@@ -1,0 +1,8 @@
+app:
+  image: nginx
+  volumes:
+    - ./app:/usr/share/nginx/html/app
+    - ./conf/nginx.conf:/etc/nginx/nginx.conf
+    - ./videos:/usr/share/nginx/html/videos
+  ports:
+    - "8080:80"
