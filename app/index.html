@@ -2,8 +2,11 @@
 <html>
 
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/static/video.js/dist/video-js.css" rel="stylesheet">
+  <link href="/static/jquery-ui-dist/jquery-ui.min.css" rel="stylesheet">
   <style>
     body {
       background-color: #FAFCFF;
@@ -16,48 +19,94 @@
     .control {
       margin-bottom: 20px;
     }
+    #video-settings {
+      margin-top: 20px;
+    }
+    #custom-handle {
+      width: 3em;
+      height: 1.6em;
+      top: 50%;
+      margin-top: -.8em;
+      text-align: center;
+      line-height: 1.6em;
+    }
   </style>
-  <!-- If you'd like to support IE8 -->
-  <script src="/static/video.js/dist/ie8/videojs-ie8.min.js"></script>
   <script src="/static/jquery/dist/jquery.min.js"></script>
+  <script src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/static/jquery-ui-dist/jquery-ui.min.js"></script>
 </head>
 
 <body>
-  <h1 class="text-center">Express Connect is Awesome</h1>
-  <hr>
-  <div class="container-fluid">
+  <div class="container-fluid" id="app">
+    <h1 class="text-center">Express Connect</h1>
+    <hr>
     <div class="row">
-      <div class="col-md-12 text-center control">
-        <button type="button" class="btn btn-primary btn-lg" id="play">
-          <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play
-        </button>
-        <button type="button" class="btn btn-default btn-lg" id="stop">
-          <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause
-        </button>
+      <div class="col-md-12">
+        <div class="control text-center">
+          <button type="button" class="btn btn-primary" id="play">
+            <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play
+          </button>
+          <button type="button" class="btn btn-default" id="pause">
+            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause
+          </button>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#video-settings"
+                  aria-expanded="false" aria-controls="video-settings">
+              Settings <span class="glyphicon glyphicon-menu-down"></span>
+          </button>
+        </div>
+        <div class="collapse" id="video-settings">
+          <div class="well">
+            <div class="row">
+              <div class="col-md-3">
+                <h5>Playback Rate</h5>
+                <div id="playback_rate">
+                    <div id="custom-handle" class="ui-slider-handle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+       </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4 gallery">
-        <video id="video1" class="video-js" controls preload="auto" width="600" height="400" poster="videos/oceans.png" data-setup="{}">
-          <source src="videos/oceans.mp4" type='video/mp4'>
-          <source src="videos/oceans.webm" type='video/webm'>
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a web browser that
-            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
+        <h3>Public Internet</h3>
+        <video id="pnet_video" class="video-js" controls preload="none" width="600" height="400" poster="videos/oceans.png" data-setup="{}">
+          <source src="http://106.15.193.135/videos/oceans.mp4" type='video/mp4'>
         </video>
-        <p>Public Internet</p>
-      </div>
+        <div class="row"> <!-- Status table -->
+          <div class="col-md-8">
+            <h4>Video Info</h4>
+            <table class="table table-stripped">
+              <tbody>
+                <tr>
+                  <td>Status</td>
+                  <td id="pnet_video_status"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div> <!-- End status table -->
       <div class="col-md-4 col-md-offset-2 gallery">
-        <video id="video2" class="video-js" controls preload="auto" width="600" height="400" poster="videos/oceans.png" data-setup="{}">
+        <h3>Express Connect</h3>
+        <video id="exc_video" class="video-js" controls preload="none" width="600" height="400" poster="videos/oceans.png" data-setup="{}">
           <source src="videos/oceans.mp4" type='video/mp4'>
-          <source src="videos/oceans.webm" type='video/webm'>
-          <p class="vjs-no-js">
-            To view this video please enable JavaScript, and consider upgrading to a web browser that
-            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-          </p>
         </video>
-        <p>Express Connect</p>
+        <div class="row"> <!-- Status table -->
+          <div class="col-md-8">
+            <h4>Video Info</h4>
+            <table class="table table-stripped">
+              <tbody>
+                <tr>
+                  <td>Status</td>
+                  <td id="exc_video_status"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div> <!-- End status table -->
       </div>
     </div>
   </div>

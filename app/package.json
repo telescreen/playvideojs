@@ -8,11 +8,10 @@
   },
   "author": "Bui Hong Ha",
   "license": "BSD-2-Clause",
-  "devDependencies": {
-    "video.js": "^6.2.0"
-  },
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "jquery-ui-dist": "^1.12.1",
+    "video.js": "^6.2.0"
   }
 }
