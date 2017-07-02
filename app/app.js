@@ -1,6 +1,5 @@
 (function() {
     let videos = [videojs("pnet_video"), videojs("exc_video")];
-
     // Controls
     var handle = $('#custom-handle');
     $('#playback_rate').slider({
@@ -21,8 +20,8 @@
     });
 
     videos.forEach(function(video) {
-        video.on('stalled', function(event) {
-            $('#' + this.id() + '_status').text('stalled');
+        video.on('waiting', function(event) {
+            $('#' + this.id() + '_status').text('waiting');
         });
         video.on('playing', function(event) {
             $('#' + this.id() + '_status').text('playing');
